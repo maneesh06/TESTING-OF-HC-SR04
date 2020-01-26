@@ -1,0 +1,27 @@
+
+/*By Maneesh.......
+Date 26/01/2020.....*/
+
+//we are going to define the pin//
+#define trigpin 4
+#define echopin 5
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(4,OUTPUT);
+  pinMode(5,INPUT);
+}
+long distance,duration;
+void loop()
+{
+  // first we send low pulse for 2 microsecond
+  digitalWrite(trigpin,LOW);
+  delayMicroseconds(2);
+  digitalWrite(echopin,HIGH);
+  delayMicroseconds(10);
+  // we know that ultrasonic sensor trigger sound wave . and speed of sound wave is 343 m/s 
+  // duration is always in microsecond
+  duration = pulseIn(echopin, HIGH);
+  distance = (duration/2)/29.1;
+  Serial.println(distance);
+}
